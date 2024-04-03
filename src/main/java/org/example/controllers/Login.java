@@ -27,7 +27,7 @@ public class Login {
                 Session session = request.session(true);
                 session.attribute("username", username);
                 trust(getTrust(), getKeyPwd());
-                response.redirect("https://ec2-54-84-32-11.compute-1.amazonaws.com:5001/mainpage");
+                response.redirect("https://ec2-44-211-197-199.compute-1.amazonaws.com:5001/mainpage");
                 return null;
             }
 
@@ -48,7 +48,7 @@ public class Login {
     }
 
     public static String getKeyPwd() {
-        return  "160617";
+        return  "123456";
     }
 
 
