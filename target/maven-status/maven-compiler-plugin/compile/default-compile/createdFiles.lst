@@ -1,0 +1,6 @@
+org\example\model\User.class
+org\example\services\HashGenerator.class
+org\example\controllers\MainPage.class
+org\example\HelloWorld.class
+org\example\controllers\Login.class
+org\example\services\URLReader.class
