@@ -50,6 +50,8 @@ sudo yum install maven
 
 ## Clona el repositorio
 git clone https://github.com/YhonatanGoomez/AREP7.git
+
+
 cd /AREP7
 
 ![img_3.png](img/img_3.png)
@@ -111,3 +113,7 @@ Este proyecto está licenciado bajo la Licencia MIT - vea el archivo `LICENSE.md
 - Consejo a cualquiera cuyo código fue usado
 - Inspiración
 - etc
+
+## Prueba y Despliegue en AWS
+
+https://www.youtube.com/watch?v=tW3ayCe5imc
