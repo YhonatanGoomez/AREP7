@@ -29,7 +29,7 @@ En ambas instancias instalaremos github para así poder clonar nuestro repositor
 sudo yum install -y git
 ```
 
-![img1.png](img/img1.png)
+![img.png](img/img1.png)
 
 #### Instalacion de java:
 
@@ -37,7 +37,7 @@ sudo yum install -y git
 sudo yum install -y java-17-amazon-corretto-devel
 ```
 
-![img2.png](img/img2.png)
+![img.png](img/img2.png)
 
 #### Instalacion de Maven:
 
@@ -45,14 +45,14 @@ sudo yum install -y java-17-amazon-corretto-devel
 sudo yum install maven
 ```
 
-![img5.png](img/img5.png)
+![img.png](img/img5.png)
 
 
 ## Clona el repositorio
 git clone https://github.com/YhonatanGoomez/AREP7.git
 cd /AREP7
 
-![img3.png](img/img3.png)
+![img.png](img/img3.png)
 # Instala las dependencias del proyecto
 `mvn compile install`
 
@@ -95,7 +95,7 @@ Para desplegar este proyecto en un sistema en vivo, sigue las instrucciones espe
 
 Este sistema dedicado a la verificación de identidades atiende requerimientos cifrados en el puerto 5000, respaldado por un certificado SSL para la seguridad en el intercambio de datos. Está configurado para procesar solicitudes tipo POST bajo la ruta /login y establece conexión con la página principal, MainPage, para su funcionamiento integral.
 
-![img4.png](img/img4.png)
+![img.png](img/img4.png)
 
 ## Authors
 
