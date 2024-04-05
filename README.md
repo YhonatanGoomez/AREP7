@@ -29,7 +29,7 @@ En ambas instancias instalaremos github para así poder clonar nuestro repositor
 sudo yum install -y git
 ```
 
-![img.png](img/img1.png)
+![img_1.png](img/img_1.png)
 
 #### Instalacion de java:
 
@@ -37,7 +37,7 @@ sudo yum install -y git
 sudo yum install -y java-17-amazon-corretto-devel
 ```
 
-![img.png](img/img2.png)
+![img_2.png](img/img_2.png)
 
 #### Instalacion de Maven:
 
@@ -45,14 +45,14 @@ sudo yum install -y java-17-amazon-corretto-devel
 sudo yum install maven
 ```
 
-![img.png](img/img5.png)
+![img_5.png](img/img_5.png)
 
 
 ## Clona el repositorio
 git clone https://github.com/YhonatanGoomez/AREP7.git
 cd /AREP7
 
-![img.png](img/img3.png)
+![img_3.png](img/img_3.png)
 # Instala las dependencias del proyecto
 `mvn compile install`
 
@@ -70,7 +70,6 @@ java -cp "target/classes:target/dependency/*" org.example.controllers.MainPage
 Después de seguir estos pasos, podrás acceder a la aplicación en `http://localhost:5000`.
 
 Sin embargo, en el navegador copiaremos la URL de la instancia en la que se usó el Login con el user y password para ambos: admin
-
 
 
 
@@ -95,7 +94,7 @@ Para desplegar este proyecto en un sistema en vivo, sigue las instrucciones espe
 
 Este sistema dedicado a la verificación de identidades atiende requerimientos cifrados en el puerto 5000, respaldado por un certificado SSL para la seguridad en el intercambio de datos. Está configurado para procesar solicitudes tipo POST bajo la ruta /login y establece conexión con la página principal, MainPage, para su funcionamiento integral.
 
-![img.png](img/img4.png)
+![img_4.png](img/img_4.png)
 
 ## Authors
 
@@ -112,7 +111,3 @@ Este proyecto está licenciado bajo la Licencia MIT - vea el archivo `LICENSE.md
 - Consejo a cualquiera cuyo código fue usado
 - Inspiración
 - etc
-
-
-## Prueba y despliegue con AWS
-https://youtu.be/tW3ayCe5imc
