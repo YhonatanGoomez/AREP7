@@ -56,7 +56,8 @@ cd /AREP7
 
 ![img_3.png](img/img_3.png)
 # Instala las dependencias del proyecto
-`mvn compile install`
+`mvn compile`
+`mvn clean install`
 
 # Ejecuta el servidor de desarrollo
 En la primera instancia ejecutaremos el siguiente comando:
@@ -71,13 +72,27 @@ java -cp "target/classes:target/dependency/*" org.example.controllers.MainPage
 
 Después de seguir estos pasos, podrás acceder a la aplicación en `http://localhost:5000`.
 
-Sin embargo, en el navegador copiaremos la URL de la instancia en la que se usó el Login con el user y password para ambos: admin
+## AWS
+
+Ahora, para desplegar el proyecto en AWS necesitaremos crear dos instancias (User, seguridad) en las cuales deberemos de instalar Github, Java y Maven, clonaremos el repositorio creado anteriormente y lo ejecutaremos
+
+![img_6.png](img/img_6.png)
 
 
+##### Ejecucion
 
-## Deployment
+![img_7.png](img/img_7.png)
 
-Para desplegar este proyecto en un sistema en vivo, sigue las instrucciones específicas de tu proveedor de hosting o servidor de aplicaciones.
+El siguiente paso sera las clases de los controles en las instancias, como se observa a continuacion:
+![img_8.png](img/img_8.png)
+![img_9.png](img/img_9.png)
+
+Una vez corriendo ambas instancias ingresaremos a la direccion IPV4 que nos brindan las instancias de Amazon, en nuestro caso sera la de la instancia User, por el puerto definido anteriormente en donde veremos la siguiente interfaz
+![img_10.png](img/img_10.png)
+
+
+Las demostraciones y funcionamiento se explicaran en el video seccion `Prueba y Despliegue en AWS`
+
 
 
 ## Built With
@@ -102,18 +117,9 @@ Este sistema dedicado a la verificación de identidades atiende requerimientos c
 
 - **Yhonatan Steven Gómez Jiménez**
 
-Consulta también la lista de contribuyentes que participaron en este proyecto.
 
-## License
 
-Este proyecto está licenciado bajo la Licencia MIT - vea el archivo `LICENSE.md` para detalles.
-
-## Acknowledgments
-
-- Consejo a cualquiera cuyo código fue usado
-- Inspiración
-- etc
 
 ## Prueba y Despliegue en AWS
 
-https://www.youtube.com/watch?v=tW3ayCe5imc
+https://youtu.be/RXL2I_4y7yw

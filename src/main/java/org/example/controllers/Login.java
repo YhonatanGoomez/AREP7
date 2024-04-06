@@ -27,7 +27,7 @@ public class Login {
                 Session session = request.session(true);
                 session.attribute("username", username);
                 trust(getTrust(), getKeyPwd());
-                response.redirect("https://ec2-44-211-197-199.compute-1.amazonaws.com:5001/mainpage");
+                response.redirect("https://ec2-3-93-240-238.compute-1.amazonaws.com:5001/mainpage");
                 return null;
             }
 
