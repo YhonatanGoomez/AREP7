@@ -10,11 +10,11 @@ import static spark.Spark.*;
 
 public class Login {
 
+    private static final String ADMIN = "admin"; 
     private static final ConcurrentHashMap<String, User> users = new ConcurrentHashMap<>(Map.of(
-            "admin", new User("admin", hashGenerator("admin"))
+            ADMIN, new User(ADMIN, hashGenerator(ADMIN))
     ));
 
- 
     public static void main(String[] args) {
         port(getPort());
         staticFiles.location("/public");
@@ -50,10 +50,5 @@ public class Login {
     public static String getKeyPwd() {
         return  "123456";
     }
-
-
-
-
-
 
 }
