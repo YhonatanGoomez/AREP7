@@ -18,6 +18,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class URLReader {
+    private static final Logger LOGGER = Logger.getLogger(URLReader.class.getName());
+
+    // Constructor privado para prevenir la instanciación
+    private URLReader() {
+        throw new IllegalStateException("Utility class");
+    }
 
     public static void trust(String trustPath, String pwd) {
         try {
@@ -25,15 +31,22 @@ public class URLReader {
             char[] trustStorePassword = pwd.toCharArray();
 
             KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
-            trustStore.load(new FileInputStream(trustStoreFile), trustStorePassword);
+            FileInputStream fis = null;
+            try {
+                fis = new FileInputStream(trustStoreFile);
+                trustStore.load(fis, trustStorePassword);
+            } finally {
+                if (fis != null) {
+                    fis.close();
+                }
+            }
 
             TrustManagerFactory tmf = TrustManagerFactory
                     .getInstance(TrustManagerFactory.getDefaultAlgorithm());
-
             tmf.init(trustStore);
 
-            for(TrustManager t: tmf.getTrustManagers()){
-                System.out.println(t);
+            for (TrustManager t : tmf.getTrustManagers()) {
+                LOGGER.log(Level.INFO, "TrustManager: {0}", t.toString());
             }
 
             SSLContext sslContext = SSLContext.getInstance("TLS");
@@ -42,38 +55,30 @@ public class URLReader {
 
         } catch (IOException | NoSuchAlgorithmException | CertificateException |
                  KeyManagementException | KeyStoreException ex) {
-            Logger.getLogger(URLReader.class.getName()).log(Level.SEVERE, null, ex);
+            LOGGER.log(Level.SEVERE, "Error setting up SSLContext", ex);
         }
     }
 
     public static void readURL(String urlstr) throws Exception {
-        String site = urlstr;
-        URL siteURL = new URL(site);
+        URL siteURL = new URL(urlstr);
         URLConnection urlConnection = siteURL.openConnection();
         Map<String, List<String>> headers = urlConnection.getHeaderFields();
         Set<Map.Entry<String, List<String>>> entrySet = headers.entrySet();
         for (Map.Entry<String, List<String>> entry : entrySet) {
             String headerName = entry.getKey();
             if (headerName != null) {
-                System.out.print(headerName + ":");
-            }
-            List<String> headerValues = entry.getValue();
-            for (String value : headerValues) {
-                System.out.print(value);
+                LOGGER.log(Level.INFO, "{0}:{1}", new Object[]{headerName, entry.getValue()});
             }
         }
 
-
-
-        BufferedReader reader
-                = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-        try (reader) {
-            String inputLine = null;
+        BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+        try {
+            String inputLine;
             while ((inputLine = reader.readLine()) != null) {
-                System.out.println(inputLine);
+                LOGGER.log(Level.INFO, inputLine);
             }
         } catch (IOException x) {
-            System.err.println(x);
+            LOGGER.log(Level.SEVERE, "Error reading from URL", x);
         }
     }
 }
