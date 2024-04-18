@@ -26,20 +26,13 @@ public class URLReader {
     }
 
     public static void trust(String trustPath, String pwd) {
-        try {
-            File trustStoreFile = new File(trustPath);
-            char[] trustStorePassword = pwd.toCharArray();
+        File trustStoreFile = new File(trustPath);
+        char[] trustStorePassword = pwd.toCharArray();
 
+        // Utiliza try-with-resources para asegurar que el FileInputStream se cierre automáticamente
+        try (FileInputStream fis = new FileInputStream(trustStoreFile)) {
             KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
-            FileInputStream fis = null;
-            try {
-                fis = new FileInputStream(trustStoreFile);
-                trustStore.load(fis, trustStorePassword);
-            } finally {
-                if (fis != null) {
-                    fis.close();
-                }
-            }
+            trustStore.load(fis, trustStorePassword);
 
             TrustManagerFactory tmf = TrustManagerFactory
                     .getInstance(TrustManagerFactory.getDefaultAlgorithm());
@@ -52,7 +45,6 @@ public class URLReader {
             SSLContext sslContext = SSLContext.getInstance("TLS");
             sslContext.init(null, tmf.getTrustManagers(), null);
             SSLContext.setDefault(sslContext);
-
         } catch (IOException | NoSuchAlgorithmException | CertificateException |
                  KeyManagementException | KeyStoreException ex) {
             LOGGER.log(Level.SEVERE, "Error setting up SSLContext", ex);
@@ -71,8 +63,7 @@ public class URLReader {
             }
         }
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-        try {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()))) {
             String inputLine;
             while ((inputLine = reader.readLine()) != null) {
                 LOGGER.log(Level.INFO, inputLine);
